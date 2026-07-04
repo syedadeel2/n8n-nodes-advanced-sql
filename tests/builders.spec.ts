@@ -28,6 +28,8 @@ describe('query builders', () => {
 	});
 
 	it('rejects invalid identifiers (injection guard)', () => {
-		expect(() => buildInsert('mssql', 'users; DROP TABLE x', { a: 1 })).toThrow(/Invalid identifier/);
+		expect(() => buildInsert('mssql', 'users; DROP TABLE x', { a: 1 })).toThrow(
+			/Invalid identifier/,
+		);
 	});
 });

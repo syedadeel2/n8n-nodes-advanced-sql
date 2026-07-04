@@ -34,7 +34,8 @@ class ConnectionPoolManager {
 	}
 
 	private tokenFingerprint(auth: DriverAuthConfig): string {
-		const secret = auth.mssql?.options.token ?? auth.postgres?.password ?? auth.mssql?.options.password ?? '';
+		const secret =
+			auth.mssql?.options.token ?? auth.postgres?.password ?? auth.mssql?.options.password ?? '';
 		return secret ? createHash('sha256').update(secret).digest('hex') : 'static';
 	}
 
@@ -106,7 +107,8 @@ class ConnectionPoolManager {
 			database: creds.database,
 			user: auth.postgres?.user,
 			password: auth.postgres?.password,
-			ssl: creds.ssl !== false ? { rejectUnauthorized: creds.trustServerCertificate !== true } : false,
+			ssl:
+				creds.ssl !== false ? { rejectUnauthorized: creds.trustServerCertificate !== true } : false,
 			max: options.poolMax ?? 10,
 			idleTimeoutMillis: 30000,
 			connectionTimeoutMillis: options.queryTimeout ?? 30000,

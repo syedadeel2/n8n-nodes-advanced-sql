@@ -92,7 +92,12 @@ export class AdvancedSql implements INodeType {
 				placeholder: 'Add Option',
 				default: {},
 				options: [
-					{ displayName: 'Query Timeout (Ms)', name: 'queryTimeout', type: 'number', default: 30000 },
+					{
+						displayName: 'Query Timeout (Ms)',
+						name: 'queryTimeout',
+						type: 'number',
+						default: 30000,
+					},
 					{ displayName: 'Pool Max', name: 'poolMax', type: 'number', default: 10 },
 				],
 			},
@@ -101,7 +106,9 @@ export class AdvancedSql implements INodeType {
 
 	async execute(this: IExecuteFunctions): Promise<INodeExecutionData[][]> {
 		const items = this.getInputData();
-		const creds = (await this.getCredentials('advancedSqlApi')) as unknown as AdvancedSqlCredentials;
+		const creds = (await this.getCredentials(
+			'advancedSqlApi',
+		)) as unknown as AdvancedSqlCredentials;
 		const credentialId = this.getNode().credentials?.advancedSqlApi?.id ?? 'anon';
 		const secrets = collectSecrets(creds);
 		const engine = creds.engine;

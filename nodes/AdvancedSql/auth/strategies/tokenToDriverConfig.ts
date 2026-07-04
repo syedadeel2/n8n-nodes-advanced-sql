@@ -5,10 +5,7 @@ import type { AdvancedSqlCredentials, DriverAuthConfig } from '../types';
  * engine. For Postgres (Azure AAD / RDS IAM) the token is passed as the
  * password; for mssql it becomes an AAD access-token authentication block.
  */
-export function tokenToDriverConfig(
-	c: AdvancedSqlCredentials,
-	token: string,
-): DriverAuthConfig {
+export function tokenToDriverConfig(c: AdvancedSqlCredentials, token: string): DriverAuthConfig {
 	if (c.engine === 'postgres') {
 		return { postgres: { user: c.user || undefined, password: token } };
 	}

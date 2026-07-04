@@ -17,11 +17,9 @@ export class CertificateStrategy implements IAuthStrategy {
 		private readonly credentialId: string,
 		private readonly cache: TokenCache = tokenCache,
 		private readonly credentialFactory: () => TokenCredential = () =>
-			new ClientCertificateCredential(
-				this.c.certTenantId ?? '',
-				this.c.certClientId ?? '',
-				{ certificate: this.c.pem ?? '' },
-			),
+			new ClientCertificateCredential(this.c.certTenantId ?? '', this.c.certClientId ?? '', {
+				certificate: this.c.pem ?? '',
+			}),
 	) {}
 
 	async getConnectionConfig(): Promise<DriverAuthConfig> {

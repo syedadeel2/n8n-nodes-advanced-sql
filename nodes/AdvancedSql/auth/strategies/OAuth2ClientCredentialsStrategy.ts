@@ -8,9 +8,7 @@ import { TokenCache, tokenCache } from '../TokenCache';
 import { tokenToDriverConfig } from './tokenToDriverConfig';
 
 /** Token endpoint fetcher; injectable for tests. Uses the global `fetch`. */
-export type TokenFetcher = (
-	c: AdvancedSqlCredentials,
-) => Promise<CachedAccessToken>;
+export type TokenFetcher = (c: AdvancedSqlCredentials) => Promise<CachedAccessToken>;
 
 const defaultFetcher: TokenFetcher = async (c) => {
 	const body = new URLSearchParams({

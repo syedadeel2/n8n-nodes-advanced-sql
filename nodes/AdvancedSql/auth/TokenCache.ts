@@ -15,10 +15,7 @@ export class TokenCache {
 	private inflight = new Map<string, Promise<CachedAccessToken>>();
 
 	/** Returns a valid token string, acquiring/refreshing via `acquire` on miss. */
-	async getToken(
-		key: string,
-		acquire: () => Promise<CachedAccessToken | null>,
-	): Promise<string> {
+	async getToken(key: string, acquire: () => Promise<CachedAccessToken | null>): Promise<string> {
 		const cached = this.store.get(key);
 		if (cached && cached.expiresOnTimestamp - SKEW_MS > this.now()) {
 			return cached.token;

@@ -31,9 +31,7 @@ export class ManagedIdentityStrategy implements IAuthStrategy {
 		const clientId = this.c.managedIdentityClientId;
 		if (this.c.allowDefaultChain) {
 			return new DefaultAzureCredential(
-				this.c.miType === 'userAssigned' && clientId
-					? { managedIdentityClientId: clientId }
-					: {},
+				this.c.miType === 'userAssigned' && clientId ? { managedIdentityClientId: clientId } : {},
 			);
 		}
 		return this.c.miType === 'userAssigned' && clientId

@@ -40,19 +40,12 @@ describe('AdvancedSql.execute', () => {
 
 		const [out] = await new AdvancedSql().execute.call(ctx);
 		expect(out.map((o) => o.json)).toEqual([{ id: 1 }, { id: 2 }]);
-		expect(spy).toHaveBeenCalledWith(
-			expect.anything(),
-			'SELECT * FROM t WHERE id = @p1',
-			[1],
-			{},
-		);
+		expect(spy).toHaveBeenCalledWith(expect.anything(), 'SELECT * FROM t WHERE id = @p1', [1], {});
 		expect(poolManager.acquire).toHaveBeenCalled();
 	});
 
 	it('builds an INSERT from table + columns', async () => {
-		const spy = jest
-			.spyOn(queryModule, 'runQuery')
-			.mockResolvedValue({ rows: [], rowCount: 1 });
+		const spy = jest.spyOn(queryModule, 'runQuery').mockResolvedValue({ rows: [], rowCount: 1 });
 
 		const ctx = makeContext({
 			operation: 'insert',

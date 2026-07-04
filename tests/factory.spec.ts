@@ -19,8 +19,8 @@ describe('createAuthStrategy', () => {
 	});
 
 	it('throws for an unknown method', () => {
-		expect(() =>
-			createAuthStrategy(creds('nope' as AuthenticationMethod), 'cred1'),
-		).toThrow(/Unsupported authentication method/);
+		expect(() => createAuthStrategy(creds('nope' as AuthenticationMethod), 'cred1')).toThrow(
+			/Unsupported authentication method/,
+		);
 	});
 });
