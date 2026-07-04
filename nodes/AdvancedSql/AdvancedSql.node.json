@@ -1,0 +1,18 @@
+{
+	"node": "n8n-nodes-base.advancedSql",
+	"nodeVersion": "1.0",
+	"codexVersion": "1.0",
+	"categories": ["Development", "Data & Storage"],
+	"resources": {
+		"credentialDocumentation": [
+			{
+				"url": "https://github.com/syedadeel2/n8n-nodes-advanced-sql/blob/main/DESIGN.md"
+			}
+		],
+		"primaryDocumentation": [
+			{
+				"url": "https://github.com/syedadeel2/n8n-nodes-advanced-sql/blob/main/README.md"
+			}
+		]
+	}
+}
