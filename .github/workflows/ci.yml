@@ -21,7 +21,9 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: npm
 
-      - run: npm ci
+      # --ignore-scripts skips native builds of transitive deps (e.g. isolated-vm,
+      # pulled in by n8n-workflow) that we neither build nor test against.
+      - run: npm ci --ignore-scripts
 
       - name: Format check
         run: npm run format:check --if-present
