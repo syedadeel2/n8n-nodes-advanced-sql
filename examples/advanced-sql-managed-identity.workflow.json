@@ -1,0 +1,49 @@
+{
+  "name": "Advanced SQL — Azure Managed Identity demo",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "b1c2d3e4-0001-4a00-9000-000000000001",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [260, 300]
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT TOP (@p1) Id, Name, CreatedAt FROM dbo.Customers WHERE Region = @p2 ORDER BY CreatedAt DESC",
+        "parameters": "{ \"p1\": 10, \"p2\": \"EMEA\" }",
+        "options": {
+          "queryTimeout": 30000,
+          "poolMax": 5
+        }
+      },
+      "id": "b1c2d3e4-0002-4a00-9000-000000000002",
+      "name": "Advanced SQL",
+      "type": "n8n-nodes-advanced-sql.advancedSql",
+      "typeVersion": 1,
+      "position": [520, 300],
+      "credentials": {
+        "advancedSqlApi": {
+          "id": "REPLACE_WITH_CREDENTIAL_ID",
+          "name": "Azure SQL (Managed Identity)"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          { "node": "Advanced SQL", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "meta": {
+    "description": "Demonstrates the Advanced SQL node querying Azure SQL using a system-assigned managed identity. Create an 'advancedSqlApi' credential with engine=mssql, authentication=azureManagedIdentity, host=<server>.database.windows.net, database=<db>, then replace the credential id above."
+  }
+}
